@@ -1,3 +1,13 @@
+"""Dashboard views."""
+
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    """Show dash homepage."""
+    pass
+
+
+def login(request):
+    """Show dash login page."""
+    pass

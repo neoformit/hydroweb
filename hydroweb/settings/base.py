@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 DEBUG = True
 env = load_dotenv()
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 LOGIN_URL = '/login'
 
@@ -104,7 +104,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'hydropi/static'
+STATIC_ROOT = BASE_DIR / 'hydroweb/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

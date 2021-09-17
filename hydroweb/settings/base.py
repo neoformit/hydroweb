@@ -8,7 +8,7 @@ DEBUG = True
 env = load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-
+LOGIN_URL = '/login'
 
 ALLOWED_HOSTS = [
     'localhost',

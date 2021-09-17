@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+{% extends 'dash/header.html' %}
+{% load static %}
 
-  <head>
-    <meta charset="utf-8">
-    <title> HydroPi dashboard </title>
-  </head>
+  {% block head %}
+  <title> HydroPi Dashboard </title>
+  {% endblock %}
 
-  <body>
-    <div id="root"></div>
-  </body>
-
-</html>
+  {% block content %}
+    <div id="root"> Nothing to show yet! </div>
+  {% endblock %}

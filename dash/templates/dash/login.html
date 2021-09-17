@@ -1,15 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+{% extends 'dash/header.html' %}
+{% load static %}
 
-  <head>
-    <meta charset="utf-8">
+    {% block head %}
     <title> HydroPi login </title>
-  </head>
+    <link rel="stylesheet" href="{% static 'dash/css/login.css' %}">
+    {% endblock %}
 
-  <body>
-    <div class="main">
-      
+
+    {% block content %}
+    <div class="login">
+      <div class="heading">
+        <img src="{% static 'dash/img/logo.png' %}" alt="HydroPi logo">
+        <h1> HydroPi</h1>
+
+        <br>
+
+        <h3> Log in </h3>
+      </div>
+
+      <form action="/login" method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+          <input class="form-control" type="text" name="username" placeholder="Username"
+            {% if form.username.value %}value="{{ form.username.value }}"{% endif %}>
+          <input class="form-control" type="password" name="password" placeholder="Password">
+          {{ form.non_field_errors }}
+          <button class="button" type="submit" class="button"> Log in </button>
+        </div>
+      </form>
+
     </div>
-  </body>
-
-</html>
+    {% endblock %}

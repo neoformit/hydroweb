@@ -1,5 +1,6 @@
 """Settings for hydroweb project on Django 3.2.6."""
 
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -7,7 +8,7 @@ DEBUG = True
 env = load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-
+LOGIN_URL = '/login'
 
 ALLOWED_HOSTS = []
 

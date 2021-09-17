@@ -1,5 +1,6 @@
 """Settings for hydroweb project on Django 3.2.6."""
 
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -9,7 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'raspberrypi.local',
+]
 
 
 # Application definition

@@ -31,5 +31,5 @@ def login(request):
 def logout(request):
     """Log user out."""
     if request.user.is_authenticated:
-        auth.logout(request.user)
+        auth.logout(request)
     return redirect('/login')

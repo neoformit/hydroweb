@@ -19,14 +19,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Components */
 .button {
-  color: white;
+  color: #efefef;
   border: none;
   border-radius: 10px;
   background-color: var(--main);
   padding: 5px 25px;
   transition-duration: 0.25s;
   cursor: pointer;
+  outline: none;
 }
 .button:hover {
+  color: white;
+  text-decoration: none;
   background-color: var(--main-hover);
+}
+
+/* Specific */
+#react-root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

@@ -3,7 +3,7 @@
 import logging
 from django import forms
 from django.contrib import auth
-from django.core.exceptions import ValidationError
+from django.forms.utils import ErrorList
 
 logger = logging.getLogger('hydroweb')
 
@@ -23,7 +23,9 @@ class LoginForm(forms.Form):
             password=self.cleaned_data['password'])
         if self.user:
             return True
-        raise ValidationError("Username and password not recognised.")
+        errors = self._errors.setdefault("username", ErrorList())
+        errors.append("Username and password not recognised")
+        return False
 
     def login(self):
         """Log in authenticated user."""

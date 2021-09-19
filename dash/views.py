@@ -1,6 +1,7 @@
 """Dashboard views."""
 
 from django.contrib import auth
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +12,10 @@ from .forms import LoginForm
 def index(request):
     """Show dash homepage."""
     # Fetch Monitor records
-    return render(request, 'dash/index.html', {'data': None})
+    return render(request, 'dash/index.html', {
+        'data': None,
+        'production': getattr(settings, 'PRODUCTION', False),
+    })
 
 
 def login(request):

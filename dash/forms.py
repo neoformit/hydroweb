@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
         self.request = request
         self.user = auth.authenticate(
             self.request,
-            username=self.cleaned_data['username'],
+            username=self.cleaned_data['username'].lower(),
             password=self.cleaned_data['password'])
         if self.user:
             return True

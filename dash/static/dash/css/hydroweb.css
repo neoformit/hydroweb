@@ -33,14 +33,34 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   background-color: var(--main-hover);
 }
-
-/* Specific */
-#react-root {
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.navbar .row > img {
+  height: 50px;
+  margin: 10px;
+}
+.navbar .title {
+  padding-top: 10px;
+}
+.main {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   align-items: center;
-  justify-content: center;
-  text-align: center;
 }
+.icon {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.icon:hover {
+  box-shadow: 0 0 1rem forestgreen;
+}
+
+/* Specific */

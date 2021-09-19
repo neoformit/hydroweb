@@ -18,7 +18,7 @@ const reactErrorModal = (error, info) => {
             <p> Error: ${error} </p>
             <pre>Stack trace:</pre>
             <pre style="text-align: left; font-size: 0.6rem;">
-              ${info.componentStack}\n\n
+              ${info?.componentStack}\n\n
             </pre>
           </div>
 

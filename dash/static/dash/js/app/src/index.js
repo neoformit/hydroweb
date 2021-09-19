@@ -10,7 +10,6 @@ import reactErrorModal from './utils/reactErrorModal'
 
 // Alert configuration
 const options = {
-  // you can also just use 'bottom center'
   position: positions.TOP_RIGHT,
   timeout: 5000,
   offset: '30px',
@@ -19,6 +18,7 @@ const options = {
 
 
 try {
+  console.log("Rendering React app...")
   ReactDOM.render(
     <AlertProvider template={AlertTemplate} {...options}>
       <App />
@@ -27,5 +27,7 @@ try {
   )
 }
 catch(err) {
+  console.log("Couldn't render React app...")
+  alert(err);
   reactErrorModal(err);
 }

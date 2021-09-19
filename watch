@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd /home/cameron/dev/hydroweb/dash/static/dash/js/app
+npm start
+cd /home/cameron/dev/hydroweb

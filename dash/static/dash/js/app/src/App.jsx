@@ -1,9 +1,10 @@
 import React from 'react'
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip'
 
 import ErrorBoundary from './utils/ErrorBoundary'
-import Logo from './assets/img/logo.png';
-import Logout from './assets/icons/logout.svg';
+import Main from './components/main/Main'
+import Logo from './assets/img/logo.png'
+import Logout from './assets/icons/logout.svg'
 
 
 const App = (props) => {
@@ -23,9 +24,7 @@ const App = (props) => {
           </a>
         </div>
 
-        <div className="container text-center my-auto">
-          <p className="text-center"> Nothing to show yet! </p>
-        </div>
+        <Main />
       </div>
     </ErrorBoundary>
   )

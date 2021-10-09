@@ -1,0 +1,21 @@
+[Unit]
+Description=Gunicorn for hydroweb
+Requires=hydroweb.socket
+After=network.target
+
+[Service]
+PIDFile=/run/hydroweb/pid
+User = pi
+Group = www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory=/srv/sites/hydroweb
+Environment="PATH=/home/pi/hydro/venv/bin"
+ExecStart=/home/pi/hydro/venv/bin/gunicorn --pid /run/hydroweb/pid   \
+          --bind unix:/run/hydroweb.sock \
+          -c /srv/sites/hydroweb/hydroweb/gunicorn.py hydroweb.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

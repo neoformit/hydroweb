@@ -1,0 +1,8 @@
+[Unit]
+Description=Hydroweb Gunicorn socket
+
+[Socket]
+ListenStream=/run/hydroweb.sock
+
+[Install]
+WantedBy=sockets.target

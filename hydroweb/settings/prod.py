@@ -7,4 +7,5 @@ PRODUCTION = True
 
 ALLOWED_HOSTS = [
     'neoformit.ddns.net',
+    'hydro.neoformit.com',
 ]

@@ -3,8 +3,8 @@ import ReactTooltip from 'react-tooltip'
 
 import ErrorBoundary from './utils/ErrorBoundary'
 import Main from './components/main/Main'
-import Logo from './assets/img/logo.png'
-import Logout from './assets/icons/logout.svg'
+import Logo from 'assets/img/logo.png'
+import Logout from 'assets/icons/logout.svg'
 
 
 const App = (props) => {
@@ -14,7 +14,7 @@ const App = (props) => {
       <div className="main">
         <div className="navbar">
 
-          <div className="row px-5">
+          <div className="row px-3">
             <img src={Logo} alt="HydroPi logo" />
             <h1 className="title"> HydroPi </h1>
           </div>

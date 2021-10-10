@@ -1,0 +1,23 @@
+/* Status bar */
+.status-bar {
+  margin: .25rem;
+  font-size: 1.5rem;
+}
+.status-bar p {
+  margin-bottom: 0;
+}
+.status-bar span:first-child {
+  padding: 0 1rem;
+  border: 1px solid grey;
+  border-right-color: transparent;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+.status-bar span:last-child {
+  padding: 0 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  color: var(--status-font);
+  background-color: var(--status-bg);
+  box-shadow: 0 0 10px 1px var(--status-shadow);
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import PhDial from './dials/PhDial'
 import StatusLevel from './StatusLevel'
 
 const StatusDisplay = (props) => {

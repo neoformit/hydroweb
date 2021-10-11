@@ -1,12 +1,20 @@
 import React from 'react'
 
 import { STATUSCOLORMAP } from 'utils/status'
-import PhDial from './dials/PhDial'
+import StatusDial from './StatusDial'
 
 const StatusLevel = (props) => {
 
   const { status } = props
   const depthColor = STATUSCOLORMAP[status.params.depth.status]
+
+  const statusDials = Object.keys(status.params).map( (k) => {
+    if ( k !== 'depth' ) {
+      return (
+        <StatusDial data={status.params[k]} name={k} key={k} />
+      )
+    }
+  })
 
   return (
     <div className='status-level'>
@@ -24,7 +32,7 @@ const StatusLevel = (props) => {
       </div>
 
       <div className="dials">
-      <PhDial data={status.params.ph} />
+        { statusDials }
       </div>
     </div>
   )

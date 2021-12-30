@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { getStatus } from 'utils/status'
-
 const StatusBar = (props) => {
 
   const currentStatus = props.status.text

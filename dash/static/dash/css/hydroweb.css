@@ -66,6 +66,11 @@ h1, h2, h3, h4, h5, h6 {
 .icon:hover {
   box-shadow: 0 0 1rem forestgreen;
 }
+.logs pre {
+  font-size: small;
+  max-height: 60vh;
+  overflow-y: auto;
+}
 
 @media(max-width: 600px) {
   :root {

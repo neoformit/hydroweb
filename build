@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd /home/cameron/dev/hydro/hydroweb/dash/static/dash/js/app
-npm start
+npm run build

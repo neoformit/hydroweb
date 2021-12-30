@@ -11,4 +11,4 @@ def get_status(request):
 
 def get_log(request):
     """Return the most recent hydropi log output."""
-    return JsonResponse({'text': handlers.get_log()})
+    return JsonResponse({'text': handlers.get_logs()})

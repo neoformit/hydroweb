@@ -1,7 +1,7 @@
 // Interface getLogs() request
 
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import Modal from '../../utils/Modal'
 import useModal from '../../utils/useModal'
@@ -11,6 +11,7 @@ import { getLogs } from '../../utils/requests/status'
 
 const LogButton = (props) => {
 
+  const endLogRef = useRef()
   const { toggle, modal } = useModal()
   const [logs, setLogs ] = useState('')
   const [loading, setLoading ] = useState(1)
@@ -22,7 +23,7 @@ const LogButton = (props) => {
       console.log('Fetching logs')
       setLogs(data.text)
       setLoading(0)
-      // Scroll to bottom of log output
+      endLogRef.current.scrollIntoView({ behavior: 'smooth' })
     })
   }
 
@@ -36,7 +37,10 @@ const LogButton = (props) => {
         <h3> Activity logs </h3>
         <br />
         <div className="logs">
-          <pre>{ logs }</pre>
+          <pre>
+            { logs }
+            <span ref={endLogRef}/>
+          </pre>
         </div>
         <button className="button" onClick={toggle}>Close</button>
       </Modal>

@@ -2,7 +2,8 @@
 
 import os
 
-LOG_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
+LOG_ROOT = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs')
 
 if not os.path.exists(LOG_ROOT):
     os.mkdir(LOG_ROOT)

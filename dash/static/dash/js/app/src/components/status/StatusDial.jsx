@@ -8,7 +8,7 @@ const StatusDial = (props) => {
   const { data, name } = props
 
   const handler = (event) => {
-    // Handle click event - display modal with settings
+    // Handle click event - display modal with settings/functions?
   }
 
   return (
@@ -30,7 +30,7 @@ const StatusDial = (props) => {
       />
       <p>
         <b>{data.text}</b>
-        <br /> 
+        <br />
         {data.value}{data.unit}
       </p>
     </div>

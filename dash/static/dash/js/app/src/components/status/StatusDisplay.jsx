@@ -1,6 +1,6 @@
 import React from 'react'
 
-import StatusLevel from './StatusLevel'
+import StatusLevels from './StatusLevels'
 
 const StatusDisplay = (props) => {
 
@@ -8,7 +8,7 @@ const StatusDisplay = (props) => {
 
   return (
     <div className="status-display">
-      <StatusLevel status={status} />
+      <StatusLevels status={status} />
     </div>
   )
 }

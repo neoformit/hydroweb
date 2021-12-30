@@ -25,6 +25,7 @@ const App = (props) => {
         </div>
 
         <Main />
+
       </div>
     </ErrorBoundary>
   )

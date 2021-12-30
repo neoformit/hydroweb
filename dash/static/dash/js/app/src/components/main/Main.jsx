@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import Spinner from '../aux/Spinner'
 import StatusBar from '../status/StatusBar'
 import StatusDisplay from '../status/StatusDisplay'
-import { getStatus, setStatusStyle } from 'utils/status'
+import LogButton from '../log/LogButton'
+import { getStatus, setStatusStyle } from 'utils/requests/status'
 
 const Main = (props) => {
 
@@ -13,12 +14,12 @@ const Main = (props) => {
 
   useEffect(() => {
     setLoading(1)
-    const data = getStatus()
-    console.log('Data:')
-    console.log(data)
-    setStatusStyle(data)
-    setStatus(data)
-    setLoading(0)
+    getStatus().then( (data) => {
+      console.log('Data:')
+      console.log(data)
+      setStatus(data)
+      setLoading(0)
+    })
   }, [])
 
   return (
@@ -29,6 +30,7 @@ const Main = (props) => {
           <>
             <StatusBar status={ status } />
             <StatusDisplay status={ status } />
+            <LogButton />
           </>
         )
       }

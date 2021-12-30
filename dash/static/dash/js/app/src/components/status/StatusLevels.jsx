@@ -3,7 +3,7 @@ import React from 'react'
 import { STATUSCOLORMAP } from 'utils/status'
 import StatusDial from './StatusDial'
 
-const StatusLevel = (props) => {
+const StatusLevels = (props) => {
 
   const { status } = props
   const depthColor = STATUSCOLORMAP[status.params.depth.status]
@@ -38,4 +38,4 @@ const StatusLevel = (props) => {
   )
 }
 
-export default StatusLevel
+export default StatusLevels

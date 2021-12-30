@@ -12,7 +12,7 @@ import { getLogs } from '../../utils/requests/status'
 const LogButton = (props) => {
 
   const { toggle, modal } = useModal()
-  const [logs, setLogText ] = useState('')
+  const [logs, setLogs ] = useState('')
   const [loading, setLoading ] = useState(1)
 
   const viewLogs = () => {
@@ -20,7 +20,7 @@ const LogButton = (props) => {
     setLoading(1)
     getLogs().then( (data) => {
       console.log('Fetching logs')
-      setLogText(data.text)
+      setLogs(data.text)
       setLoading(0)
       // Scroll to bottom of log output
     })
@@ -34,6 +34,7 @@ const LogButton = (props) => {
 
       <Modal isOpen={modal} contentLabel="View logs">
         <h3> Activity logs </h3>
+        <br />
         <div className="logs">
           <pre>{ logs }</pre>
         </div>

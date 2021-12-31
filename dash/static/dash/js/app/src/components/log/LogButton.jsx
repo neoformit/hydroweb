@@ -11,7 +11,6 @@ import { getLogs } from '../../utils/requests/status'
 
 const LogButton = (props) => {
 
-  const endLogRef = useRef()
   const { toggle, modal } = useModal()
   const [logs, setLogs ] = useState('')
   const [loading, setLoading ] = useState(1)
@@ -20,10 +19,8 @@ const LogButton = (props) => {
     toggle()
     setLoading(1)
     getLogs().then( (data) => {
-      console.log('Fetching logs')
       setLogs(data.text)
       setLoading(0)
-      endLogRef.current.scrollIntoView({ behavior: 'smooth' })
     })
   }
 
@@ -34,14 +31,18 @@ const LogButton = (props) => {
       </button>
 
       <Modal isOpen={modal} contentLabel="View logs">
-        <h3> Activity logs </h3>
+        <h3> Activity log </h3>
         <br />
-        <div className="logs">
-          <pre>
-            { logs }
-            <span ref={endLogRef}/>
-          </pre>
-        </div>
+
+        {
+          loading ? <Spinner />
+          :
+          <div className="logs">
+            <pre>
+              { logs }
+            </pre>
+          </div>
+        }
         <button className="button" onClick={toggle}>Close</button>
       </Modal>
     </div>

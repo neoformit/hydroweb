@@ -15,8 +15,6 @@ const Main = (props) => {
   useEffect(() => {
     setLoading(1)
     getStatus().then( (data) => {
-      console.log('Data:')
-      console.log(data)
       setStatus(data)
       setLoading(0)
     })

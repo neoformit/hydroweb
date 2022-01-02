@@ -25,6 +25,4 @@ export const setStatusStyle = (data) => {
   root.style.setProperty('--status-font', color.font)
   root.style.setProperty('--status-shadow', color.shadow)
   root.style.setProperty('--status-bg', color.background)
-  root.style.setProperty(
-    '--depth', `${data.params.depth.value}%`)
 }

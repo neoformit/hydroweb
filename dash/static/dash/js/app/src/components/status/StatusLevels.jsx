@@ -22,10 +22,17 @@ const StatusLevels = (props) => {
         className="depth"
         style={{
           backgroundColor: depthColor.background,
+          height: `${100 * status.params.depth.percent}%`,
         }}
       >
         <p
-          style={{ color: depthColor.font }}
+          style={{
+            color: depthColor.font,
+            paddingLeft: '1rem',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+          }}
         >
           { status.params.depth.value}{ status.params.depth.unit }
         </p>

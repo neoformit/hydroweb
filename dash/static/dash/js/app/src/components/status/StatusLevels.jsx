@@ -28,7 +28,8 @@ const StatusLevels = (props) => {
         <p
           style={{
             color: depthColor.font,
-            paddingLeft: '1rem',
+            backgroundColor: depthColor.background,
+            padding: '0 1rem',
             position: 'absolute',
             bottom: 0,
             left: 0,
@@ -37,6 +38,16 @@ const StatusLevels = (props) => {
           { status.params.depth.value}{ status.params.depth.unit }
         </p>
       </div>
+
+      <hr style={{
+          borderTopColor: depthColor.font,
+          position: 'absolute',
+          left: '5rem',
+          right: '0.25rem',
+          bottom: `${100 * status.params.depth.targetPercent}%`,
+          margin: 0,
+        }}
+      />
 
       <div className="dials">
         { statusDials }

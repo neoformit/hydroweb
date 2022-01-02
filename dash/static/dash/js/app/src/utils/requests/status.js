@@ -6,28 +6,26 @@ import errorSwal from '../errorSwal'
 import { setStatusStyle, STATUSCOLORMAP } from '../status'
 
 
+/* getStatus response schema
+{
+  text: 'normal',
+  params: {
+    depth: {
+      text: 'Depth',
+      status: 'normal',
+      value: 30,
+      percent: 0.45,
+      unit: '%',
+    },
+
+    ...
+
+  },
+},
+}
+*/
 export const getStatus = () => axios.get(ROUTES.getStatus)
   .then( (r) => {
-
-    /* Response schema:
-    {
-      text: 'normal',
-      params: {
-        depth: {
-          text: 'Depth',
-          status: 'normal',
-          value: 30,
-          percent: 0.45,
-          unit: '%',
-        },
-
-        ...
-
-        },
-      },
-    }
-    */
-
     console.log("API getStatus:")
     console.log(r.data)
     setStatusStyle(r.data)

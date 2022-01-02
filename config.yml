@@ -78,10 +78,10 @@ MIX_PUMP_SECONDS: 300
 MIX_ADDITION_DELAY_SECONDS: 10
 
 # Reservoir water level monitoring
-TANK_HEIGHT_MM: 452              # Total distance between head sensor and tank bott>
+TANK_HEIGHT_MM: 452              # Total distance between head sensor and tank bottom (e.g. 225mm)
 DEPTH_MAX_MM: 400                # Depth units when full (e.g. 200mm)
-DEPTH_TARGET_PC: 0.25            # Depth to maintain
-DEPTH_TOLERANCE: 0.05            # Tolerated percent difference (of target)
+VOLUME_TARGET_L: 12              # Volume to maintain (litres)
+VOLUME_TOLERANCE: 0.05           # Tolerated percent difference (of target)
 WATER_ADDITION_SECONDS: 10
 WATER_MAX_ADDITION_SECONDS: 60
 

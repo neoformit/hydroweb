@@ -1,7 +1,7 @@
 // Get data on current status
 
 import ROUTES from './routes'
-import axios from './requests'
+import axios from './axios'
 import errorSwal from '../errorSwal'
 import { setStatusStyle, STATUSCOLORMAP } from '../status'
 

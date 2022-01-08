@@ -3,10 +3,10 @@
 import React from 'react'
 import { useState, useRef } from 'react'
 
-import Modal from '../../utils/Modal'
-import useModal from '../../utils/useModal'
+import Modal from '../aux/Modal'
 import Spinner from '../aux/Spinner'
-import { getLogs } from '../../utils/requests/status'
+import useModal from 'utils/useModal'
+import { getLogs } from 'utils/requests/status'
 
 
 const LogButton = (props) => {

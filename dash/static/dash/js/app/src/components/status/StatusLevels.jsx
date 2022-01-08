@@ -45,7 +45,7 @@ const StatusLevels = (props) => {
           left: '5rem',
           right: '0.25rem',
           bottom: `${100 * status.params.depth.targetPercent}%`,
-          margin: 0,
+          margin: '.25rem 0',
         }}
       />
 

@@ -5,6 +5,9 @@ from django.urls import path
 from . import endpoints
 
 urlpatterns = [
-    path('status', endpoints.get_status),
-    path('log', endpoints.get_log),
+    path('status/', endpoints.general.get_status),
+    path('log/', endpoints.general.get_log),
+    path('config/', endpoints.config.ConfigView.as_view()),
+    path('controllers/<controller>/',
+         endpoints.controllers.ControllerView.as_view()),
 ]

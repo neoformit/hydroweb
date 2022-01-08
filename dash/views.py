@@ -5,14 +5,13 @@ import logging
 from django.contrib import auth
 from django.conf import settings
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 
+from .middleware.login import login_exempt
 from .forms import LoginForm
 
 logger = logging.getLogger('django')
 
 
-@login_required
 def index(request):
     """Show dash homepage."""
     # Fetch Monitor records
@@ -22,6 +21,7 @@ def index(request):
     })
 
 
+@login_exempt
 def login(request):
     """Show dash login page."""
     form = LoginForm()

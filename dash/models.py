@@ -9,6 +9,7 @@ class Config(models.Model):
 
     key = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
+    type = models.CharField(max_length=5)
 
 
 class History(models.Model):
@@ -20,7 +21,7 @@ class History(models.Model):
     ec = models.FloatField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(10)])
-    depth_mm = models.IntegerField(
+    depth_l = models.IntegerField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(600)])
     temp_c = models.FloatField(

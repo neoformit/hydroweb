@@ -14,5 +14,6 @@ class ConfigView(View):
 
     def post(self, request):
         """Update config with the given data."""
+        # Should clean this to contain only keys from the DB
         handlers.config.set(request.POST)
         return JsonResponse({}, status=201)

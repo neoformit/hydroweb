@@ -13,11 +13,6 @@ const ConfigTable = (props) => {
   const { data, setData } = props
   const alert = useAlert()
 
-  // const debouncedConfigUpdate = data => useCallback(
-  //   debounce( () => requestConfigUpdate(data), 1000 ),
-  // []) // Should be persistent across renders
-
-  // This will not debounce yet due to re-renders
   const debouncedConfigUpdate = useCallback(debounce(
     d => requestConfigUpdate(d)
       .then(() => alert.show('Config updated', {type: 'success'}))
@@ -29,10 +24,7 @@ const ConfigTable = (props) => {
     let newData = { ...data };
     newData.config[i].value = event.target.value
     setData(newData)
-    debouncedConfigUpdate({
-      key: event.target.name,
-      value: event.target.value,
-    })
+    debouncedConfigUpdate({ [event.target.name]: event.target.value })
   }
 
   const configRows = data.config.map( (item, i) =>

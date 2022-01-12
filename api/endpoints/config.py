@@ -1,8 +1,12 @@
 """API endpoints for handling config requests."""
 
+import json
+import logging
 from django.views import View
 from django.http import JsonResponse
 from hydropi.server import handlers
+
+logger = logging.getLogger('django')
 
 
 class ConfigView(View):
@@ -15,5 +19,9 @@ class ConfigView(View):
     def post(self, request):
         """Update config with the given data."""
         # Should clean this to contain only keys from the DB
-        handlers.config.set(request.POST)
+        data = json.loads(request.body.decode('utf-8'))
+        logger.info(
+            'Received request to ConfigView.post:\n'
+            f"DATA: {data}")
+        handlers.config.set(data)
         return JsonResponse({}, status=201)

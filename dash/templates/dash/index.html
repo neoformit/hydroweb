@@ -11,8 +11,8 @@
 
   {% block script %}
   {% if production %}
-  <script src="{% static 'dash/js/app/dist/bundle.js' %}"></script>
+  <script src="{% static 'dash/js/app/bundle.js' %}"></script>
   {% else %}
-  <script src="{% static 'dash/js/app/dist/bundle.dev.js' %}"></script>
+  <script src="{% static 'dash/js/app/bundle.dev.js' %}"></script>
   {% endif %}
   {% endblock %}

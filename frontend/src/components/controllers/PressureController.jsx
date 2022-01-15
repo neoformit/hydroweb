@@ -22,17 +22,9 @@ const PressureController = (props) => {
     })
   }, [])
 
-  const setConfig = d => {
+  const setConfig = (i, d) => {
     let newData = { ...data }
-    newData.config = newData.config.map( item => item.key == d.key ?
-      {
-        key: item.key,
-        value: d.value,
-        type: item.type,
-        help: item.help,
-      }
-      : item
-    )
+    newData.config[i].value = d.value
     setData(newData)
   }
 
@@ -56,10 +48,9 @@ const PressureController = (props) => {
           <Controls
             toggleable={true}
             methods={['refill']}
-            paramMethods={[]}
+            paramMethods={{}}
             data={data}
             setLoading={setLoading}
-            setData={setData}
           />
         </>
       )

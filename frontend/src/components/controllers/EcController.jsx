@@ -14,12 +14,20 @@ const EcController = props => {
   const [loading, setLoading ] = useState(1)
 
   useEffect( () => {
-    setData(getControllerData('ec'))
-    setLoading(0)
+    getControllerData('ec').then( data => {
+      setData(data)
+      setLoading(0)
+    })
   }, [])
 
+  const setConfig = (i, d) => {
+    let newData = { ...data }
+    newData.config[i].value = d.value
+    setData(newData)
+  }
+
   return (
-    <Modal isOpen={modal} contentLabel="Ec">
+    <Modal isOpen={modal} contentLabel="EC">
     <h3> EC </h3>
     <br />
 
@@ -29,8 +37,8 @@ const EcController = props => {
         <>
           <ConfigTable
             name="ec"
-            data={data}
-            setData={setData}
+            data={data.config}
+            setConfig={setConfig}
           />
 
           <hr />
@@ -40,7 +48,6 @@ const EcController = props => {
             paramMethods={{ deliver: ['ml']} }
             data={data}
             setLoading={setLoading}
-            setData={setData}
           />
         </>
       )

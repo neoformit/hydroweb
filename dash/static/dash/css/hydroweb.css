@@ -66,14 +66,52 @@ h1, h2, h3, h4, h5, h6 {
 .icon:hover {
   box-shadow: 0 0 1rem forestgreen;
 }
-.logs pre {
-  font-size: small;
+.modal-scrollbox {
   max-height: 70vh;
   overflow-y: auto;
+}
+
+/* Config */
+.btn-config {
+  position: absolute;
+  top: 5rem;
+  right: 1.25rem;
+  transition-duration: 0.5s;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.btn-config:hover {
+  transform: rotate(90deg);
+}
+.btn-config:focus {
+  outline: none;
+}
+.btn-config img {
+  width: 3.5rem;
+  height: auto;
+}
+.config-table table {
+  max-width: 1000px;
+}
+.config-table th {
+  background-color: #ddd;
+}
+.config-table td.value {
+  width: 250px;
+}
+.config-table td.value input {
+  width: 250px;
 }
 
 @media(max-width: 600px) {
   :root {
     font-size: 8pt;
+  }
+  .config-table td.value {
+    width: 80px;
+  }
+  .config-table td.value input {
+    width: 80px;
   }
 }

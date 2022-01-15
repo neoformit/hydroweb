@@ -4,30 +4,34 @@ import React from 'react'
 import { useCallback, useEffect } from 'react'
 import { debounce } from 'lodash'
 import { useAlert } from 'react-alert'
-import { requestConfigUpdate } from 'utils/requests/config'
+import { requestPostConfig } from 'utils/requests/config'
 import Spinner from '../aux/Spinner'
 
 
 const ConfigTable = (props) => {
 
-  const { data, setData } = props
+  // Data should be an object of config k:v pairs to expose
+
+  const { title, data, setConfig } = props
   const alert = useAlert()
 
+  console.log(`ConfigTable data for ${title}:`);
+  console.log(data);
+
   const debouncedConfigUpdate = useCallback(debounce(
-    d => requestConfigUpdate(d)
+    d => requestPostConfig(d)
       .then(() => alert.show('Config updated', {type: 'success'}))
       .catch(() => alert.show('Error updating config', {type: 'error'}))
   , 1000), [])
 
   const handleInput = (event, i) => {
     if (event.target.value === null) return
-    let newData = { ...data };
-    newData.config[i].value = event.target.value
-    setData(newData)
-    debouncedConfigUpdate({ [event.target.name]: event.target.value })
+    const data = { [event.target.name]: event.target.value }
+    setConfig(i, data)
+    debouncedConfigUpdate(data)
   }
 
-  const configRows = data.config.map( (item, i) =>
+  const configRows = data ? data.map( (item, i) =>
     <tr key={item.key}>
       <td>
         {item.key}
@@ -35,20 +39,22 @@ const ConfigTable = (props) => {
         <small>{item.help}</small>
       </td>
 
-      <td>
+      <td className="value">
         <input
           name={item.key}
           type={item.type}
-          value={data.config[i].value}
+          value={data[i].value}
           onChange={event => handleInput(event, i)}
         />
       </td>
     </tr>
-  )
+  ) : <tr><td colspan="2" className="text-center"> Nothing to show </td></tr>
 
   return (
     <div className="config-table">
-      <h5 className="font-weight-bold"> Configuration </h5>
+      <h5 className="font-weight-bold" style={{ textTransform: 'capitalize' }}>
+        {title || "Configuration"}
+      </h5>
 
       <br />
 

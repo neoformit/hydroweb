@@ -22,6 +22,20 @@ const PressureController = (props) => {
     })
   }, [])
 
+  const setConfig = d => {
+    let newData = { ...data }
+    newData.config = newData.config.map( item => item.key == d.key ?
+      {
+        key: item.key,
+        value: d.value,
+        type: item.type,
+        help: item.help,
+      }
+      : item
+    )
+    setData(newData)
+  }
+
   return (
     <Modal isOpen={modal} contentLabel="Pressure">
     <h3> Pressure </h3>
@@ -33,8 +47,8 @@ const PressureController = (props) => {
         <>
           <ConfigTable
             name="pressure"
-            data={data}
-            setData={setData}
+            data={data.config}
+            setConfig={setConfig}
           />
 
           <hr />

@@ -37,12 +37,17 @@ const LogButton = (props) => {
         {
           loading ? <Spinner />
           :
-          <div className="logs">
-            <pre>
-              { logs }
-            </pre>
+          <div className="modal-scrollbox">
+            <small>
+              <pre>
+                { logs }
+              </pre>
+            </small>
           </div>
         }
+
+        <br />
+
         <button className="button" onClick={toggle}>Close</button>
       </Modal>
     </div>

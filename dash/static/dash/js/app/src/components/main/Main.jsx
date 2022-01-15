@@ -5,6 +5,7 @@ import Spinner from '../aux/Spinner'
 import StatusBar from '../status/StatusBar'
 import StatusDisplay from '../status/StatusDisplay'
 import LogButton from '../log/LogButton'
+import FullConfig from '../controllers/FullConfig'
 import { getStatus, setStatusStyle } from 'utils/requests/status'
 
 const Main = (props) => {
@@ -29,6 +30,7 @@ const Main = (props) => {
             <StatusBar status={ status } />
             <StatusDisplay status={ status } />
             <LogButton />
+            <FullConfig />
           </>
         )
       }

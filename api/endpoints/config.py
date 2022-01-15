@@ -2,6 +2,7 @@
 
 import json
 import logging
+from pprint import pformat
 from django.views import View
 from django.http import JsonResponse
 from hydropi.server import handlers
@@ -14,13 +15,16 @@ class ConfigView(View):
 
     def get(self, request):
         """Return current config as a dictionary."""
-        return JsonResponse(handlers.config.get())
+        data = handlers.config.get()
+        logger.debug("Data returned from hydropi.handlers.config.get:")
+        logger.debug(pformat(data))
+        return JsonResponse(data)
 
     def post(self, request):
         """Update config with the given data."""
         # Should clean this to contain only keys from the DB
         data = json.loads(request.body.decode('utf-8'))
-        logger.info(
+        logger.debug(
             'Received request to ConfigView.post:\n'
             f"DATA: {data}")
         handlers.config.set(data)

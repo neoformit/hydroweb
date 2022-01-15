@@ -6,6 +6,18 @@ import { getControllerData } from 'utils/requests/controllers'
 import Controls from './Controls'
 import ConfigTable from './ConfigTable'
 
+const PARAM_METHODS = {
+  // Methods
+  'deliver': [
+      // Arguments
+      {
+        'name': 'ml',
+        'type': 'number',
+        'default': 20,
+      },
+    ],
+}
+
 
 const EcController = props => {
 
@@ -45,7 +57,7 @@ const EcController = props => {
 
           <Controls
             toggleable={true}
-            paramMethods={{ deliver: ['ml']} }
+            paramMethods={PARAM_METHODS}
             data={data}
             setLoading={setLoading}
           />

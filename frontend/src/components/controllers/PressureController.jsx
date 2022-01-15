@@ -46,6 +46,7 @@ const PressureController = (props) => {
           <hr />
 
           <Controls
+            name="pressure"
             toggleable={true}
             methods={['refill']}
             paramMethods={{}}

@@ -103,6 +103,15 @@ h1, h2, h3, h4, h5, h6 {
 .config-table td.value input {
   width: 250px;
 }
+.controls-table table {
+  max-width: 1000px;
+}
+.controls-table td:first-child {
+  text-transform: capitalize;
+}
+.controls-table td:last-child {
+  text-align: center;
+}
 
 @media(max-width: 600px) {
   :root {

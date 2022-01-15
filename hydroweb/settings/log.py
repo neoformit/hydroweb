@@ -8,6 +8,8 @@ LOG_ROOT = os.path.join(
 if not os.path.exists(LOG_ROOT):
     os.mkdir(LOG_ROOT)
 
+HYDROPI_LEVEL = 'INFO'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -64,7 +66,7 @@ LOGGING = {
             'propagate': True,
         },
         'hydropi': {
-            'level': 'DEBUG',
+            'level': HYDROPI_LEVEL,
             'handlers': ['hydropi_console', 'hydropi_file'],
             'propagate': False,
         },

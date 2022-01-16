@@ -97,9 +97,9 @@ h1, h2, h3, h4, h5, h6 {
 .config-table th {
   background-color: #ddd;
 }
-.config-table td.value {
+/* .config-table td.value {
   width: 250px;
-}
+} */
 .config-table td.value input {
   width: 250px;
 }

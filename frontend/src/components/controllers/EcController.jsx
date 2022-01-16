@@ -11,9 +11,9 @@ const PARAM_METHODS = {
   'deliver': [
       // Arguments
       {
-        'name': 'ml',
-        'type': 'number',
-        'default': 20,
+        name: 'ml',
+        type: 'number',
+        value: 20,  // default
       },
     ],
 }
@@ -56,10 +56,9 @@ const EcController = props => {
           <hr />
 
           <Controls
+            name="ec"
             toggleable={true}
             paramMethods={PARAM_METHODS}
-            data={data}
-            setLoading={setLoading}
           />
         </>
       )

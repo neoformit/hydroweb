@@ -13,7 +13,7 @@ const PressureController = (props) => {
 
   const { modal, toggle } = props
   const [data, setData] = useState({})
-  const [loading, setLoading ] = useState(1)
+  const [loading, setLoading] = useState(1)
 
   useEffect( () => {
     getControllerData('pressure').then( data => {
@@ -49,9 +49,6 @@ const PressureController = (props) => {
             name="pressure"
             toggleable={true}
             methods={['refill']}
-            paramMethods={{}}
-            data={data}
-            setLoading={setLoading}
           />
         </>
       )

@@ -6,7 +6,7 @@ import { getControllerData } from 'utils/requests/controllers'
 import Controls from './Controls'
 import ConfigTable from './ConfigTable'
 
-const PARAM_METHODS = {
+const KWARG_METHODS = {
   // Methods
   'deliver': [
       // Arguments
@@ -58,7 +58,7 @@ const EcController = props => {
           <Controls
             name="ec"
             toggleable={true}
-            paramMethods={PARAM_METHODS}
+            kwargMethods={KWARG_METHODS}
           />
         </>
       )

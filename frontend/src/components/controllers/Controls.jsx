@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { debounce } from 'lodash'
 import { useAlert } from 'react-alert'
 import ToggleButton from 'react-toggle-button'
-import { postTriggerControllerMethod } from 'utils/requests/controllers'
+import { postCallControllerMethod } from 'utils/requests/controllers'
 import Spinner from '../aux/Spinner'
 
 
@@ -12,10 +12,10 @@ const Controls = props => {
   // Set of device controls with defaults <on/off>
   // <string>         name: the controller identifier e.g. 'pressure'
   // <bool>     toggleable: the controller can be toggled on/off
-  // <array>       methods: name of callable nullary methods (no args)
-  // <object> paramMethods: name and args of callable methods
+  // <array>       methods: name of callable nullary methods (no kwargs)
+  // <object> kwargMethods: name and kwargs of callable methods
   //
-  // paramMethods should be like:
+  // kwargMethods should be like:
   // {
   //   'deliver': [
   //     {
@@ -30,7 +30,7 @@ const Controls = props => {
 
   const { name, toggleable } = props
   const methods = props.methods || []
-  const paramMethods = props.paramMethods || {}
+  const kwargMethods = props.kwargMethods || {}
 
   // Set state of each controller method
   // By default these are all off, but would be better if the real state is
@@ -43,7 +43,7 @@ const Controls = props => {
         [method]: 0,
       }
     }, {}),
-    ...Object.keys(paramMethods).reduce( (obj, method) => {
+    ...Object.keys(kwargMethods).reduce( (obj, method) => {
       return {
         ...obj,
         [method]: 0,
@@ -60,33 +60,33 @@ const Controls = props => {
   }
 
   // Set method arguments as state
-  const defaultParams = Object.keys(paramMethods).reduce( (obj, method) => {
-    const args = paramMethods[method]
+  const defaultKwargs = Object.keys(kwargMethods).reduce( (obj, method) => {
+    const kwargs = kwargMethods[method]
     return {
       ...obj,
-      [method]: args.reduce( (obj, arg) => {
+      [method]: kwargs.reduce( (obj, kwarg) => {
         return {
           ...obj,
-          [arg.name]: arg.value,
+          [kwarg.name]: kwarg.value,
         }
       }, {})
     }
   }, {})
-  const [methodParams, setmethodParams] = useState(defaultParams)
-  const setmethodParam = (method, name, value) => setmethodParams({
-    ...methodParams,
+  const [methodKwargs, setmethodKwargs] = useState(defaultKwargs)
+  const setmethodKwarg = (method, name, value) => setmethodKwargs({
+    ...methodKwargs,
     [method]: {
-      ...methodParams[method],
+      ...methodKwargs[method],
       [name]: value,
     }
   })
 
   const triggerMethod = method => {
-    // Send request to trigger controller method (optional params)
-    // Check if method has params
-    const params = methods.includes(method) ? null : methodParams[method]
+    // Send request to trigger controller method (optional kwargs)
+    // Check if method has kwargs
+    const kwargs = methods.includes(method) ? null : methodKwargs[method]
     // Make request
-    postTriggerControllerMethod(name, method, params).then( () => {
+    postCallControllerMethod(name, method, kwargs).then( () => {
       ['on', 'off'].includes(method) ?
         setMethodState('toggle', method === 'on' ? 1 : 0)
         : setMethodState(method, 1)
@@ -125,26 +125,25 @@ const Controls = props => {
     </tr>
   )) : null
 
-  const paramMethodRows = paramMethods ?
-    Object.keys(paramMethods).map( method => {
-      const args = paramMethods[method]
+  const kwargMethodRows = kwargMethods ?
+    Object.keys(kwargMethods).map( method => {
       return (
         <tr key={`${method}_row`}>
           <td> {method} </td>
           <td style={{ textAlign: 'right' }}>
             {
-              args.map( arg => (
-                <div key={`${method}_arg_${arg}`}>
+              kwargMethods[method].map( kwarg => (
+                <div key={`${method}_arg_${kwarg}`}>
                   <input
-                    type={arg.type}
-                    name={arg.name}
-                    value={methodParams[method][arg.name]}
+                    type={kwarg.type}
+                    name={kwarg.name}
+                    value={methodKwargs[method][kwarg.name]}
                     onChange={
-                      e => setmethodParam(method, arg.name, e.target.value)
+                      e => setmethodKwarg(method, kwarg.name, e.target.value)
                     }
                   />
                   <label style={{ marginLeft: '1rem' }}>
-                    {arg.name}
+                    {kwarg.name}
                   </label>
                 </div>
               ))
@@ -177,7 +176,7 @@ const Controls = props => {
             toggleable && toggleRow
           }
           { methodRows }
-          { paramMethodRows }
+          { kwargMethodRows }
         </tbody>
       </table>
     </div>

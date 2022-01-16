@@ -7,6 +7,8 @@ from django.views import View
 from django.http import JsonResponse
 from hydropi.server import handlers
 
+from api.utils import get_json_payload
+
 logger = logging.getLogger('django')
 
 
@@ -23,7 +25,7 @@ class ConfigView(View):
     def post(self, request):
         """Update config with the given data."""
         # Should clean this to contain only keys from the DB
-        data = json.loads(request.body.decode('utf-8'))
+        data = get_json_payload(request)
         logger.debug(
             'Received request to ConfigView.post:\n'
             f"DATA: {data}")

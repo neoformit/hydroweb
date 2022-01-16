@@ -1,13 +1,13 @@
 """API endpoints for handling controllers."""
 
+import logging
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from hydropi.server import handlers
 
-DOSE_CONTROLLERS = [
-    'ECController',
-    'PHController',
-]
+from api.utils import get_json_payload
+
+logger = logging.getLogger('django')
 
 
 class ControllerView(View):
@@ -31,15 +31,16 @@ class ControllerView(View):
         Handler expects something like:
 
         {
-            'action': {
-                'name': 'ec',
-                'method': 'deliver',
+            'method': 'deliver',
+            'kwargs': {
                 'ml': 5,
-            }
+            },
         }
         """
         try:
-            handlers.controllers.action(controller, request.POST['action'])
+            data = get_json_payload(request)
+            handlers.controllers.action(controller, data)
         except Exception as exc:
-            return HttpResponse(str(exc), status=400)
+            logger.error(str(exc))
+            return HttpResponse(str(exc), status=500)
         return HttpResponse('OK', status=201)

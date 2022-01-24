@@ -5,18 +5,18 @@
 
 import React from 'react'
 import PressureController from 'components/controllers/PressureController'
-// import DepthController from 'components/controllers/DepthController'
 import EcController from 'components/controllers/EcController'
+import PhController from 'components/controllers/PhController'
+// import DepthController from 'components/controllers/DepthController'
 // import MistController from 'components/controllers/MistController'
-// import PhController from 'components/controllers/PhController'
 // import TemperatureController from 'components/controllers/TemperatureController'
 
 const controllerMap = {
   pressure: PressureController,
-  // depth: DepthController,
+  ph: PhController,
   ec: EcController,
+  // depth: DepthController,
   // mist: MistController,
-  // ph: PhController,
   // temperature: TemperatureController,
 }
 
@@ -26,9 +26,4 @@ export const getController = (name, toggle, modal) => {
   return (
     <Controller key={`${name}_controller`} toggle={toggle} modal={modal} />
   )
-  // return React.createElement(controllerMap[name], {
-  //   key: `${name}_controller`,
-  //   toggle: toggle,
-  //   modal: modal,
-  // })
 }

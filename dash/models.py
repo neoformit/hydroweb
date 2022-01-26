@@ -46,7 +46,7 @@ class History(models.Model):
             if v
         }
         since = datetime.now() - timedelta(**td_kwargs)
-        history = cls.objects.filter(datetime__gt=since)
+        history = cls.objects.filter(datetime__gt=since).order_by('datetime')
         return {
             'date': {
                 'data': [

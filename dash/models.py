@@ -47,28 +47,53 @@ class History(models.Model):
         }
         since = datetime.now() - timedelta(**td_kwargs)
         history = cls.objects.filter(datetime__gt=since)
-        return [
-            {
-                'datetime': {
-                    'data': h.datetime.strftime("%Y-%m-%d %H:%M:%S"),
-                    'text': 'Date'
-                },
-                'ec': {
-                    'data': h.ec,
-                    'text': 'EC (μS)'
-                },
-                'volume': {
-                    'data': h.depth_l,
-                    'text': 'Volume (L)'
-                },
-                'temp_c': {
-                    'data': h.temp_c,
-                    'text': 'Temp (°C)'
-                },
-                'pressure_psi': {
-                    'data': h.pressure_psi,
-                    'text': 'Pressure (PSI)'
-                },
-            }
-            for h in history
-        ]
+        return {
+            'date': {
+                'data': [
+                    h.datetime.strftime("%Y-%m-%d %H:%M:%S")
+                    for h in history
+                ],
+                'unit': '',
+                'text': 'Date',
+            },
+            'ec': {
+                'data': [
+                    h.ec
+                    for h in history
+                ],
+                'unit': 'μS',
+                'text': 'EC',
+            },
+            'ph': {
+                'data': [
+                    h.ph
+                    for h in history
+                ],
+                'unit': '',
+                'text': 'pH',
+            },
+            'volume': {
+                'data': [
+                    h.depth_l
+                    for h in history
+                ],
+                'unit': 'L',
+                'text': 'Volume',
+            },
+            'temperature': {
+                'data': [
+                    h.temp_c
+                    for h in history
+                ],
+                'unit': '°C',
+                'text': 'Temp',
+            },
+            'pressure': {
+                'data': [
+                    h.pressure_psi
+                    for h in history
+                ],
+                'unit': 'PSI',
+                'text': 'Pressure',
+            },
+        }

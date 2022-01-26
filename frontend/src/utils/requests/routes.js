@@ -12,6 +12,7 @@ const ROUTES = {
     mist: '/api/controllers/mist/',
   },
   config: '/api/config/',
+  history: '/api/history/'
 }
 
 export default ROUTES

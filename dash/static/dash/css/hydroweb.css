@@ -99,9 +99,9 @@ h1, h2, h3, h4, h5, h6 {
 .config-table th {
   background-color: #ddd;
 }
-/* .config-table td.value {
+.config-table td.value {
   width: 250px;
-} */
+}
 .config-table td.value input {
   width: 250px;
 }
@@ -115,6 +115,20 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
+/* History */
+.history {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem;
+  width: 100vw;
+  max-width: 1600px;
+}
+.history .modebar {
+  display: none !important;
+}
+
 @media(max-width: 600px) {
   :root {
     font-size: 8pt;
@@ -124,5 +138,11 @@ h1, h2, h3, h4, h5, h6 {
   }
   .config-table td.value input {
     width: 80px;
+  }
+  .history {
+    padding: 0;
+  }
+  .history .js-plotly-plot {
+    /* margin: -100px -50px 0 0; */
   }
 }

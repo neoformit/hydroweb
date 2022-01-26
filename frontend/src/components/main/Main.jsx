@@ -5,6 +5,7 @@ import Spinner from '../aux/Spinner'
 import StatusBar from '../status/StatusBar'
 import StatusDisplay from '../status/StatusDisplay'
 import LogButton from '../log/LogButton'
+import History from '../history/History'
 import FullConfig from '../controllers/FullConfig'
 import { getStatus, setStatusStyle } from 'utils/requests/status'
 
@@ -31,6 +32,10 @@ const Main = (props) => {
             <StatusDisplay status={ status } />
             <LogButton />
             <FullConfig />
+
+            <hr style={{ width: '90vw', margin: '3rem 0' }}/>
+
+            <History />
           </>
         )
       }

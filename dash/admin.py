@@ -4,6 +4,7 @@ from .models import Config, History
 
 
 class ConfigAdmin(admin.ModelAdmin):
+    """Administer config items."""
 
     list_display = [
         'key',
@@ -13,6 +14,7 @@ class ConfigAdmin(admin.ModelAdmin):
 
 
 class HistoryAdmin(admin.ModelAdmin):
+    """Administer history items."""
 
     list_display = [
         'datetime',

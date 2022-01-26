@@ -1,5 +1,6 @@
 """Dashboard models."""
 
+from datetime import datetime, timedelta
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -31,3 +32,43 @@ class History(models.Model):
     pressure_psi = models.FloatField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(200)])
+
+    @classmethod
+    def fetch(cls, days=None, hours=None, minutes=None):
+        """Serialize and return recent history as a list."""
+        td_kwargs = {
+            k: v
+            for k, v in (
+                ('days', days),
+                ('hours', hours),
+                ('minutes', minutes),
+            )
+            if v
+        }
+        since = datetime.now() - timedelta(**td_kwargs)
+        history = cls.objects.filter(datetime__gt=since)
+        return [
+            {
+                'datetime': {
+                    'data': h.datetime.strftime("%Y-%m-%d %H:%M:%S"),
+                    'text': 'Date'
+                },
+                'ec': {
+                    'data': h.ec,
+                    'text': 'EC (μS)'
+                },
+                'volume': {
+                    'data': h.depth_l,
+                    'text': 'Volume (L)'
+                },
+                'temp_c': {
+                    'data': h.temp_c,
+                    'text': 'Temp (°C)'
+                },
+                'pressure_psi': {
+                    'data': h.pressure_psi,
+                    'text': 'Pressure (PSI)'
+                },
+            }
+            for h in history
+        ]

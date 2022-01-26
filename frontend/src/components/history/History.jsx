@@ -1,11 +1,12 @@
 // Display historical data with plotly chart
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useState, useEffect } from 'react'
-import Plot from 'react-plotly.js';
 
 import { getHistory } from 'utils/requests/history'
 import Spinner from '../aux/Spinner'
+
+const Plot = React.lazy(() => import('react-plotly.js'))
 
 
 const mobile = window.innerWidth < 576;
@@ -80,7 +81,9 @@ const History = props => {
       <h3>History</h3>
 
       <div className="history">
-        {plots}
+        <Suspense fallback={<Spinner />}>
+          {plots}
+        </Suspense>
       </div>
     </>
   )

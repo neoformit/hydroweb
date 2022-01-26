@@ -26,6 +26,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.dev.js',
+    publicPath: '/static/dash/js/app/',
   },
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),

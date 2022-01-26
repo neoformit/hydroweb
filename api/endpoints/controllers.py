@@ -3,6 +3,8 @@
 import logging
 from django.views import View
 from django.http import HttpResponse, JsonResponse
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
 from hydropi.server import handlers
 
 from api.utils import get_json_payload
@@ -22,6 +24,7 @@ class ControllerView(View):
             'config': handlers.config.get(name=controller),
         })
 
+    @method_decorator(staff_member_required)
     def post(self, request, controller):
         """Set requested controller status.
 

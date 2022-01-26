@@ -15,6 +15,7 @@ class Config(models.Model):
 class History(models.Model):
     """Store status monitoring data."""
 
+    datetime = models.DateTimeField(auto_now_add=True)
     ph = models.FloatField(
         null=True,
         validators=[MinValueValidator(1), MaxValueValidator(12)])

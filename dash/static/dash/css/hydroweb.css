@@ -57,6 +57,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .icon {
+  width: 3.8rem;
+  height: auto;
   margin: .5rem;
   border: transparent;
   border-radius: 1rem;
@@ -64,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
   transition-duration: 0.25s;
 }
 .icon:hover {
-  box-shadow: 0 0 1rem forestgreen;
+  transform: scale(1.25, 1.25);
 }
 .modal-scrollbox {
   max-height: 70vh;
@@ -74,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Config */
 .btn-config {
   position: absolute;
-  top: 5rem;
+  top: 6rem;
   right: 1.25rem;
   transition-duration: 0.5s;
   border: none;

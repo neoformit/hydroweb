@@ -34,7 +34,7 @@ class History(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(200)])
 
     @classmethod
-    def fetch(cls, days=None, hours=None, minutes=None):
+    def fetch(cls, days=7, hours=None, minutes=None):
         """Serialize and return recent history as a list."""
         td_kwargs = {
             k: v

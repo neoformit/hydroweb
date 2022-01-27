@@ -18,7 +18,7 @@ class HistoryAdmin(admin.ModelAdmin):
 
     list_display = [
         'datetime',
-        'depth_l',
+        'volume_l',
         'pressure_psi',
         'ph',
         'ec',

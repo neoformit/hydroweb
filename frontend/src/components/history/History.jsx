@@ -35,7 +35,6 @@ const History = props => {
   }, [])
 
   const plots = data ? Object.keys(data).filter( k => k !== 'date' ).map( key => {
-    console.log(`Create plot data for ${key}`);
     return (
       <Plot
         key={key}

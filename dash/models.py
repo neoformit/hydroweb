@@ -23,9 +23,9 @@ class History(models.Model):
     ec = models.FloatField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(10)])
-    depth_l = models.IntegerField(
+    volume_l = models.FloatField(
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(600)])
+        validators=[MinValueValidator(0), MaxValueValidator(60)])
     temp_c = models.FloatField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(80)])
@@ -74,7 +74,7 @@ class History(models.Model):
             },
             'volume': {
                 'data': [
-                    h.depth_l
+                    h.volume_l
                     for h in history
                 ],
                 'unit': 'L',

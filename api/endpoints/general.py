@@ -18,4 +18,4 @@ def get_log(request):
 
 def get_history(request):
     """Return historical readings."""
-    return JsonResponse(History.fetch())
+    return JsonResponse(History.fetch(days=3))

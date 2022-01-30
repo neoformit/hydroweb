@@ -28,7 +28,7 @@ const MistController = props => {
 
   return (
     <Modal isOpen={modal} contentLabel="Mist">
-    <h3> Mix </h3>
+    <h3> Mist </h3>
     <br />
 
     { loading ?

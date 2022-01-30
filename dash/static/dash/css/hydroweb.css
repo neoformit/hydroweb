@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1rem;
   background-color: var(--main);
   padding: .5rem 2rem;
+  margin: 1rem;
   transition-duration: 0.25s;
   cursor: pointer;
   outline: none;
@@ -113,6 +114,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 .controls-table td:last-child {
   text-align: center;
+}
+
+/* Controllers */
+.controllers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* History */

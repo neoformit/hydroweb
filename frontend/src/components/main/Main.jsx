@@ -7,6 +7,7 @@ import StatusDisplay from '../status/StatusDisplay'
 import LogButton from '../log/LogButton'
 import History from '../history/History'
 import FullConfig from '../controllers/FullConfig'
+import ControlPanel from '../controllers/ControlPanel'
 import { getStatus, setStatusStyle } from 'utils/requests/status'
 
 const Main = (props) => {
@@ -32,6 +33,10 @@ const Main = (props) => {
             <StatusDisplay status={ status } />
             <LogButton />
             <FullConfig />
+
+            <hr style={{ width: '90vw', margin: '3rem 0' }}/>
+
+            <ControlPanel />
 
             <hr style={{ width: '90vw', margin: '3rem 0' }}/>
 

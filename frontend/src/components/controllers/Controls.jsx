@@ -83,7 +83,7 @@ const Controls = props => {
 
   const triggerMethod = method => {
     // Send request to trigger controller method (optional kwargs)
-    // Check if method has kwargs
+    // Check if method has kwargs. If so, they will be in state.
     const kwargs = methods.includes(method) ? null : methodKwargs[method]
     // Make request
     postCallControllerMethod(name, method, kwargs).then( () => {

@@ -8,7 +8,7 @@ LOG_ROOT = os.path.join(
 if not os.path.exists(LOG_ROOT):
     os.mkdir(LOG_ROOT)
 
-HYDROPI_LEVEL = 'INFO'
+HYDROPI_LEVEL = 'DEBUG'
 
 LOGGING = {
     'version': 1,

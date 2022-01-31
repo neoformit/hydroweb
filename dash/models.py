@@ -22,7 +22,7 @@ class History(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(12)])
     ec = models.FloatField(
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(10)])
+        validators=[MinValueValidator(0), MaxValueValidator(10000)])
     volume_l = models.FloatField(
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(60)])

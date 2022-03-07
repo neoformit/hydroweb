@@ -19,10 +19,10 @@
   position: absolute;
   left: 0;
   bottom: 0;
+  height: 0;
   width: calc(100% - .5rem);
   margin: .25rem;
   padding: .5rem;
-  height: var(--depth);
   font-size: 1.25rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;

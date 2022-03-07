@@ -1,65 +1,99 @@
 """Dashboard models."""
 
+from datetime import datetime, timedelta
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Config(models.Model):
-    """Store live configuration to be updated by user.
-
-    # Timing
-    SWEEP_CYCLE_MINUTES
-    MIST_CYCLE_MINUTES
-    MIST_DURATION_SECONDS
-    MIX_PUMP_SECONDS
-    MIX_ADDITION_DELAY_SECONDS
-    WATER_FILL_INTERVAL_SECONDS
-    WATER_FILL_MAX_SECONDS
-    MEDIAN_SAMPLE_DELAY_SECONDS
-    QUIET_TIME_START
-    QUIET_TIME_END
-
-    # Pressure monitoring
-    MIN_PRESSURE_PSI
-    MAX_PRESSURE_PSI
-    ALERT_PRESSURE_PSI
-
-    # PH monitoring
-    PH_TARGET
-    PH_LIMIT_WARN
-    PH_LIMIT_DANGER
-    PH_ACTION_THRESHOLD
-    PH_ACTION_THRESHOLD
-
-    # EC monitoring
-    EC_TARGET
-    EC_LIMIT_WARN
-    EC_LIMIT_DANGER
-    EC_ACTION_THRESHOLD
-    EC_ADDITION_SECONDS
-
-    # Water level monitoring
-    TANK_HEIGHT_MM
-    DEPTH_MAXIMUM_MM
-    DEPTH_LIMIT_WARN
-    DEPTH_LIMIT_DANGER
-    DEPTH_ACTION_THRESHOLD
-    """
+    """Store live configuration to be updated by user."""
 
     key = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
+    type = models.CharField(max_length=5)
 
 
-class Measurement(models.Model):
+class History(models.Model):
     """Store status monitoring data."""
 
+    datetime = models.DateTimeField(auto_now_add=True)
     ph = models.FloatField(
+        null=True,
         validators=[MinValueValidator(1), MaxValueValidator(12)])
     ec = models.FloatField(
-        validators=[MinValueValidator(0), MaxValueValidator(10)])
-    depth_mm = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(700)])
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(10000)])
+    volume_l = models.FloatField(
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(60)])
     temp_c = models.FloatField(
-        validators=[MinValueValidator(0), MaxValueValidator(40)])
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(80)])
     pressure_psi = models.FloatField(
-        validators=[MinValueValidator(0), MaxValueValidator(170)])
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(200)])
+
+    @classmethod
+    def fetch(cls, days=7, hours=None, minutes=None):
+        """Serialize and return recent history as a list."""
+        td_kwargs = {
+            k: v
+            for k, v in (
+                ('days', days),
+                ('hours', hours),
+                ('minutes', minutes),
+            )
+            if v
+        }
+        since = datetime.now() - timedelta(**td_kwargs)
+        history = cls.objects.filter(datetime__gt=since).order_by('datetime')
+        return {
+            'date': {
+                'data': [
+                    h.datetime.strftime("%Y-%m-%d %H:%M:%S")
+                    for h in history
+                ],
+                'unit': '',
+                'text': 'Date',
+            },
+            'ec': {
+                'data': [
+                    h.ec
+                    for h in history
+                ],
+                'unit': 'μS',
+                'text': 'EC',
+            },
+            'ph': {
+                'data': [
+                    h.ph
+                    for h in history
+                ],
+                'unit': '',
+                'text': 'pH',
+            },
+            'volume': {
+                'data': [
+                    h.volume_l
+                    for h in history
+                ],
+                'unit': 'L',
+                'text': 'Volume',
+            },
+            'temperature': {
+                'data': [
+                    h.temp_c
+                    for h in history
+                ],
+                'unit': '°C',
+                'text': 'Temp',
+            },
+            'pressure': {
+                'data': [
+                    h.pressure_psi
+                    for h in history
+                ],
+                'unit': 'PSI',
+                'text': 'Pressure',
+            },
+        }

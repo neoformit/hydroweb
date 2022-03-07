@@ -1,5 +1,11 @@
+# Hydropi
+config.yml
+
 # Django
 hydroweb/static/
+
+# Js
+node_modules
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

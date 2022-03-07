@@ -4,8 +4,9 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-DEBUG = True
 env = load_dotenv()
+
+DEBUG = True
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 LOGIN_URL = '/login'
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dash',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -37,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'dash.middleware.login.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'hydroweb.urls'
@@ -65,9 +68,13 @@ WSGI_APPLICATION = 'hydroweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hydroweb',
+        'USER': 'hydroweb',
+        'PASSWORD': 'hydroweb',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    },
 }
 
 
@@ -94,15 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Australia/Brisbane'
 USE_I18N = True
-
 USE_L10N = True
-
-USE_TZ = True
-
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

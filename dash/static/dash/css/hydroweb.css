@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 1rem;
   background-color: var(--main);
   padding: .5rem 2rem;
+  margin: 1rem;
   transition-duration: 0.25s;
   cursor: pointer;
   outline: none;
@@ -57,6 +58,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .icon {
+  width: 3.8rem;
+  height: auto;
   margin: .5rem;
   border: transparent;
   border-radius: 1rem;
@@ -64,11 +67,92 @@ h1, h2, h3, h4, h5, h6 {
   transition-duration: 0.25s;
 }
 .icon:hover {
-  box-shadow: 0 0 1rem forestgreen;
+  transform: scale(1.25, 1.25);
+}
+.modal-scrollbox {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Config */
+.btn-config {
+  position: absolute;
+  top: 6rem;
+  right: 1.25rem;
+  transition-duration: 0.5s;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.btn-config:hover {
+  transform: rotate(90deg);
+}
+.btn-config:focus {
+  outline: none;
+}
+.btn-config img {
+  width: 3.5rem;
+  height: auto;
+}
+.config-table table {
+  max-width: 1000px;
+}
+.config-table th {
+  background-color: #ddd;
+}
+.config-table td.value {
+  width: 250px;
+}
+.config-table td.value input {
+  width: 250px;
+}
+.controls-table table {
+  max-width: 1000px;
+}
+.controls-table td:first-child {
+  text-transform: capitalize;
+}
+.controls-table td:last-child {
+  text-align: center;
+}
+
+/* Controllers */
+.controllers {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* History */
+.history {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 3rem;
+  width: 100vw;
+  max-width: 1600px;
+}
+.history .modebar {
+  display: none !important;
 }
 
 @media(max-width: 600px) {
   :root {
     font-size: 8pt;
+  }
+  .config-table td.value {
+    width: 80px;
+  }
+  .config-table td.value input {
+    width: 80px;
+  }
+  .history {
+    padding: 0;
+  }
+  .history .js-plotly-plot {
+    /* margin: -100px -50px 0 0; */
   }
 }

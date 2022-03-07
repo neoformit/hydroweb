@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+FRONTEND=`dirname $0`/frontend
+cd $FRONTEND
+npm run build

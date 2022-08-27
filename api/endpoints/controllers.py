@@ -69,9 +69,10 @@ class ServiceView(View):
         except Exception as exc:
             logger.error(
                 "Error encountered handling service management request with"
-                f" args: {args}")
-            logger.error(str(exc))
+                f' args: "{args}"')
+            logger.error(f"Exception: {str(exc)}")
             if r:
                 logger.error(f"STDERR:\n{r.stderr}")
+                return HttpResponse(r.stderr, status=500)
             return HttpResponse(str(exc), status=500)
         return HttpResponse('OK', status=201)

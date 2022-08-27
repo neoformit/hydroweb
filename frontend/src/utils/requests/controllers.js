@@ -20,8 +20,19 @@ export const postCallControllerMethod = (name, method, kwargs) =>
     method: method,
     kwargs: kwargs,
   }).then( r => {
-    console.log(`API postTriggerControllerMethod(${name}):`)
+    console.log(`API postCallControllerMethod(${name}):`)
     console.log(r.data)
     return r.data
   })
   .catch( (err) => alert(err.response.text) )
+
+
+export const postServiceController = (action) => {
+  axios.post(ROUTES.controllers['service'], {
+    action: action,
+  }).then( r => {
+    console.log(`API postServiceController(${action}):`)
+    console.log(r.data)
+    return r.data
+  })
+}

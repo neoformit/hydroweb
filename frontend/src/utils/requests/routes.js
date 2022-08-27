@@ -10,6 +10,7 @@ const ROUTES = {
     ph: '/api/controllers/ph/',
     mix: '/api/controllers/mix/',
     mist: '/api/controllers/mist/',
+    service: '/api/service/',
   },
   config: '/api/config/',
   history: '/api/history/'

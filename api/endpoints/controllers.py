@@ -1,6 +1,7 @@
 """API endpoints for handling controllers."""
 
 import logging
+import subprocess
 from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
@@ -45,5 +46,33 @@ class ControllerView(View):
             handlers.controllers.action(controller, data)
         except Exception as exc:
             logger.error(str(exc))
+            return HttpResponse(str(exc), status=500)
+        return HttpResponse('OK', status=201)
+
+
+class ServiceView(View):
+    """Allow management of the hydropi service."""
+
+    @method_decorator(staff_member_required)
+    def post(self, request):
+        """Handle a service management request."""
+        r = None
+        try:
+            data = get_json_payload(request)
+            args = [
+                'sudo',
+                'service',
+                'hydropi',
+                data['action'],
+            ]
+            r = subprocess.run(args, check=True, capture_output=True)
+        except Exception as exc:
+            logger.error(
+                "Error encountered handling service management request with"
+                f' args: "{args}"')
+            logger.error(f"Exception: {str(exc)}")
+            if r:
+                logger.error(f"STDERR:\n{r.stderr}")
+                return HttpResponse(r.stderr, status=500)
             return HttpResponse(str(exc), status=500)
         return HttpResponse('OK', status=201)

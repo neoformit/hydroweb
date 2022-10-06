@@ -19,8 +19,10 @@ echo "Setting up Gunicorn WSGI server..."
 cd /etc/systemd/system/
 sudo ln -s "${BASE_DIR}/hydroweb/hydroweb.service"
 sudo ln -s "${BASE_DIR}/hydroweb/hydroweb.socket"
+sudo systemctl daemon-reload
 sudo systemctl enable hydroweb.service
 sudo systemctl enable hydroweb.socket
 sudo systemctl start hydroweb.socket
+sudo service nginx restart
 
 cd $BASE_DIR

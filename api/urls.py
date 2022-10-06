@@ -10,5 +10,6 @@ urlpatterns = [
     path('config/', endpoints.config.ConfigView.as_view()),
     path('controllers/<controller>/',
          endpoints.controllers.ControllerView.as_view()),
+    path('service/', endpoints.controllers.ServiceView.as_view()),
     path('history/', endpoints.general.get_history),
 ]

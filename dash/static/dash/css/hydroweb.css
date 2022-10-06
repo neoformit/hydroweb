@@ -5,6 +5,12 @@
   --status-shadow: white;
   --status-bg: white;
   --depth: 100%;
+  --warn: #e67d00;
+  --warn-hover: #f68d10;
+  --danger: #a73327;
+  --danger-hover: #b74337;
+  --muted: #666;
+  --muted-hover: #777;
 }
 
 body {
@@ -14,6 +20,10 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
+}
+.text-warn {
+  color: var(--warn);
+  font-weight: bold;
 }
 
 /* Forms */
@@ -37,6 +47,24 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   text-decoration: none;
   background-color: var(--main-hover);
+}
+.button-warn {
+  background-color: var(--warn);
+}
+.button-warn:hover {
+  background-color: var(--warn-hover);
+}
+.button-danger {
+  background-color: var(--danger);
+}
+.button-danger:hover {
+  background-color: var(--danger-hover);
+}
+.button-muted {
+  background-color: var(--muted);
+}
+.button-muted:hover {
+  background-color: var(--muted-hover);
 }
 .navbar {
   justify-content: space-between;
@@ -93,6 +121,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-config img {
   width: 3.5rem;
   height: auto;
+}
+.btn-config.service {
+  top: 11rem;
+}
+.btn-config.service:hover {
+  transform: scale(125%);
 }
 .config-table table {
   max-width: 1000px;

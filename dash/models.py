@@ -8,7 +8,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Config(models.Model):
     """Store live configuration to be updated by user."""
 
-    key = models.CharField(max_length=100)
+    key = models.CharField(max_length=100, unique=True)
     value = models.CharField(max_length=100)
     type = models.CharField(max_length=5)
 

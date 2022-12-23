@@ -32,9 +32,9 @@ const Main = (props) => {
           <>
             <StatusBar status={ status } />
             <StatusDisplay status={ status } />
+            <ServiceController />
             <LogButton />
             <FullConfig />
-            <ServiceController />
 
             <hr style={{ width: '90vw', margin: '3rem 0' }}/>
 

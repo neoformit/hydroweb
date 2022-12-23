@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { FaPlay, FaPause } from 'react-icons/fa'
+import { BsPlayCircle, BsPauseCircle } from 'react-icons/bs'
+import { FaPause, FaPlay } from 'react-icons/fa'
 import Modal from '../aux/Modal'
 import useModal from 'utils/useModal'
 import { getServiceControllerData, postServiceController } from '../../utils/requests/controllers'
-import ServiceIcon from '../../assets/icons/services.png'
 import Spinner from '../aux/Spinner'
 
 
@@ -48,11 +48,20 @@ const ServiceController = props => {
 
   const dialog = (
     <div>
-      <p>Start/pause the HydroPi service.</p>
+      <p>Pause/resume the HydroPi service.</p>
+      <p>
+        Pausing the service will:
+      </p>
+      <ul>
+        <li>Stop mist delivery</li>
+        <li>Stop logging of data</li>
+        <li>Stop maintenance actions (e.g. pressure tank refill)</li>
+        <li>Trigger a telegram notification for every maintenance cycle that is skipped</li>
+      </ul>
+      <br />
       {
         state.loading ? <Spinner /> : renderButton(state.paused)
       }
-      <br />
       <br />
       <button className="button button-muted" onClick={toggle}>Close</button>
     </div>
@@ -60,8 +69,12 @@ const ServiceController = props => {
 
   return (
     <div>
-      <button className="btn-config service" onClick={toggle}>
-        <img src={ServiceIcon} alt="Service controls" />
+      <button className="btn-service" onClick={toggle}>
+        {
+          state.paused ?
+          <BsPlayCircle />
+          : <BsPauseCircle />
+        }
       </button>
 
       <Modal className="" isOpen={modal} contentLabel="Service controls">

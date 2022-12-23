@@ -21,6 +21,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
+button:focus {
+  outline: none;
+}
 .text-warn {
   color: var(--warn);
   font-weight: bold;
@@ -97,6 +100,16 @@ h1, h2, h3, h4, h5, h6 {
 .icon:hover {
   transform: scale(1.25, 1.25);
 }
+.customModal {
+  position: absolute;
+  inset: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
 .modal-scrollbox {
   max-height: 70vh;
   overflow-y: auto;
@@ -115,18 +128,20 @@ h1, h2, h3, h4, h5, h6 {
 .btn-config:hover {
   transform: rotate(90deg);
 }
-.btn-config:focus {
-  outline: none;
-}
 .btn-config img {
   width: 3.5rem;
   height: auto;
 }
-.btn-config.service {
-  top: 11rem;
+.btn-service {
+  transition-duration: 0.5s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: dimgrey;
+  font-size: 3.3rem;
 }
-.btn-config.service:hover {
-  transform: scale(125%);
+.btn-service:hover {
+  transform: scale(120%);
 }
 .config-table table {
   max-width: 1000px;
@@ -176,6 +191,9 @@ h1, h2, h3, h4, h5, h6 {
 @media(max-width: 600px) {
   :root {
     font-size: 8pt;
+  }
+  .ReactModal__Content--after-open {
+    inset: 10px !important;
   }
   .config-table td.value {
     width: 80px;

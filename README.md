@@ -1,5 +1,15 @@
 # Hydroweb
 
-Web interface for hydroponics system
+A web interface for hydroponics system
 
-![landing page](./.img/landing.png)
+
+### System status at a glance
+![landing page screenshot](./.img/landing.png)
+
+
+### System configuration
+![configuration screenshot](./.img/configuration.png)
+
+
+### Device controllers
+![mix pump controller screenshot](./.img/controller.png)
